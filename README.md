@@ -35,9 +35,9 @@ node app.js
 
 Ao executar, o programa:
 
-1. abre `encrypted.txt` para leitura;
-2. processa o conteúdo em chunks por meio da classe `Decrypt`;
-3. grava o resultado em `decrypted.txt`;
+1. verifica se `encrypted.txt` existe e possui conteúdo;
+2. descriptografa `encrypted.txt` para `decrypted.txt` quando há conteúdo;
+3. caso contrário, criptografa `read.txt` e grava o resultado em `encrypted.txt`;
 4. informa o progresso periodicamente no terminal.
 
 Exemplo de saída:
@@ -60,7 +60,12 @@ encrypted.txt
 decrypted.txt
 ```
 
-O arquivo `read.txt` e a função `encrypt()` fazem parte da implementação do fluxo de criptografia, mas a função `encrypt()` não é chamada pelo ponto de entrada atual. Assim, a execução padrão do projeto realiza somente a descriptografia de um arquivo `encrypted.txt` já existente.
+O programa verifica `encrypted.txt` antes de iniciar:
+
+- se o arquivo existir e tiver conteúdo, executa somente a descriptografia;
+- se o arquivo não existir ou estiver vazio, executa a criptografia a partir de `read.txt`.
+
+Essa decisão impede que um arquivo criptografado com conteúdo seja criptografado novamente em uma execução posterior.
 
 ## Estrutura do projeto
 
